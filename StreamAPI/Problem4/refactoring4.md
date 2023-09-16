@@ -99,3 +99,34 @@ StreamAPI内で何からの変更を加える場合はStreamでいい感じに�
 - など
 
 これらのメソッドを組み合わせることで、数値に対する複雑な操作や計算を効率的に行うことができます。
+
+### 独り言
+StreamAPIの理解を妨げてるのは簡単な操作の中で型変換がいろいろ行われてるからだと思います。
+因みに、Stream内を除くとこんな感じになってるよ。
+
+以下のリストから40代以上の数字を抽出して合計を出す
+List<Integer> ages = Arrays.asList(25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75);
+
+1. **List<Integer>からストリームを生成**
+    - List<Integer> → Stream<Integer>
+1. Stream<Integer>をプリミティブのストリームに変換
+    - **Stream<Integer> → IntStream**
+1. **終端操作を行い、結果を取得:**
+    - IntStream → intまたはInteger
+
+流れとしてはこんな感じ（たぶん）
+List<Integer> → Stream<Integer> → IntStream → int
+
+~~頭おかしなるで。~~
+
+あとわかりやすくまとめるとこんな感じ。
+1. **Int の場合:**
+    - **List<Integer>**（ボックス化された整数のリスト）
+    - → **Stream<Integer>**（ボックス化された整数を扱うストリーム）
+    - → **IntStream**（`mapToInt`などの操作によって、プリミティブの`int`を扱うストリームに変換）
+    - → **int**（`sum`や`average`などの終端操作によって結果が得られる）
+
+2. **String の場合:**
+    - **List<String>**（文字列のリスト）
+    - → **Stream<String>**（文字列を扱うストリーム）
+    - → **List<String>** や **String**（`collect`やその他の終端操作によって結果が得られる）
