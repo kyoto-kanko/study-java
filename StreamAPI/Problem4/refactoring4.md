@@ -100,12 +100,14 @@ StreamAPI内で何からの変更を加える場合はStreamでいい感じに�
 
 これらのメソッドを組み合わせることで、数値に対する複雑な操作や計算を効率的に行うことができます。
 
-### 独り言
+## 独り言
 StreamAPIの理解を妨げてるのは簡単な操作の中で型変換がいろいろ行われてるからだと思います。
 因みに、Stream内を除くとこんな感じになってるよ。
 
-以下のリストから40代以上の数字を抽出して合計を出す
+今回の問題だと以下のような型変換が行われてるはず（たぶん）
+```java
 List<Integer> ages = Arrays.asList(25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75);
+```
 
 1. **List<Integer>からストリームを生成**
     - List<Integer> → Stream<Integer>
@@ -115,7 +117,9 @@ List<Integer> ages = Arrays.asList(25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75);
     - IntStream → intまたはInteger
 
 流れとしてはこんな感じ（たぶん）
+```
 List<Integer> → Stream<Integer> → IntStream → int
+```
 
 ~~頭おかしなるで。~~
 
