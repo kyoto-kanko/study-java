@@ -1,5 +1,5 @@
 ## 問題文
-`Problem1` クラスには、文字列を大文字に変換するメソッド `convertToUppercase` が定義されています。このメソッドは、入力が `null` の場合でも動作するように `Optional` を利用しています。このコードをリファクタリングしてください。
+以下のメソッドを完成させてください。メソッドは文字列を受け取り、その文字列がnullでない場合は大文字にしてOptionalで返し、nullの場合は空のOptionalを返します。
 
 ```java
 import java.util.Optional;
